@@ -1,0 +1,66 @@
+Wireshark is network traffic capturing tool it capture and analyis traffic what is going on in their . To capture data there are numerous method to capture data which is also called live packet capturing  it can be using taps ,port mirroring , MAC floods, ARP poisoning 
+
+NETWORK TAP USED BY RED TEAM THREAT HUNTER TO SNIFF NETWORK
+
+MAC FLOODS STRESS SWITCH TO FLOOD SHOULD BE USED WITH CAUTION BUT WE CAN ALSO USE ARP POISONING WHICH DON’T STRESS SWITCH 
+
+
+Wireshark filter syntax 
+
+And : and / &&
+Or  : or / ||
+Equals: eq / ==
+Not equal: ne /  !=
+Greater than : gt / >
+Less than : lt / <
+
+Basic filtering syntax
+Filtering by ip
+  ip.addr == <ip address
+Filtering by ports
+  tcp.port eq <port> or <protocol name> same as for udp 
+
+           ARP Packet Analysis
+
+ARP analysis is simple the most important field of arp is opcode and mac address
+Opcode can be request/response
+
+           ICMP Traffic 
+
+If it is request packet then type code will be 8
+If it is reply packet then it will be 0
+If they are alterred by suspicious activity then number can be different
+
+
+           TCP Packet Analysis
+Tcp packet is known as tcp handshake it includes series of syn,syn ack, ack.
+
+
+           DNS Packet Analysis
+
+Three things to lookup while analysing dns
+Queries-response
+UDP
+DNS-Server only
+
+
+If packet coming form udp its perfect but if packet coming from tcp than it will be suspicious 
+
+
+            HTTP Packet Analysis
+
+Http is straight forward 
+On packet right click we can roam in h
+
+To hunt or identify discrepancies in packet captures we have
+Statistics bar > Protocol hierarchy
+File bar > Export objects > HTTP
+
+            HTTPS Packet Analysis
+
+To analyis https traffic we must have the tls decryption key for that traffic than if you have that key you can go decrypt or downgrade https to http
+Edit bar > Preferences > Protocols > TLS > edit
+
+
+Then add ip address,port,protocol,keyfile the key for decryption 
+
