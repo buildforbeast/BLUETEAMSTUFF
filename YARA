@@ -1,0 +1,82 @@
+Yara is tool used for finding strings attach to program to find any malicious suspicious patterns.
+
+	1. You can identify information based on both binary and textual patterns
+
+For example 
+
+Ransomware have string for bitcoin wallent payment : 12t9y5245aaapuf87
+Botnet sets ip for command and control : 12.71.56.7
+
+We can set rules to find specific ip's or strings like above
+
+Base16 which is also called hex Yara can detect it
+
+------------------------YARA------------------
+Yara command requires only two arguments
+The rule file you created
+Name of file,process id to use rule for
+
+For example 
+ yara myrule.yar  file/pid 2202
+
+Rule example:
+
+ nano myfirstrule.yar   in it
+Rule examplerule { condition :True}
+ use extension .yar for yara
+ in this file it setting a rule to check if file exist. 
+If file exist it will gave output examplerule file
+If not it throw error no file exist 
+
+Yara have conditions to read like keywords,desc(description), meta,strings conditions,weight ,etc.
+
+Meta is a section reserved for author of yara rule
+Strings is search for specific text or hex
+Conditions can be : >+, <= ,!=
+
+For little string example 
+If we want to find a string of hello world! ,Hello World!, HELLO WORLD!
+
+We can make rule like
+                rule helloworld_checker{
+Strings:
+               $hello_world= "Hello World!"
+              $hello_world= "HELLO WORLD!"
+              $hello_world= "hello world!"
+
+ condition:
+           any of them 
+}
+
+Some cheat sheet are
+
+You don’t have to create yara rules from scratch there are already tools out there on github  for linux and windows
+https://github.com/InQuest/awesome-yara
+Loki 
+Is free of opensource ioc scanner 
+It detect on 4 methods
+	• File name
+	• Yara rule
+	• Hash check 
+	• C2 back connect check
+https://github.com/Neo23x0/Loki/releases
+
+Thor lite  https://www.nextron-systems.com/thor-lite/
+
+Fenrir https://github.com/Neo23x0/Fenrir
+
+Yaya https://www.eff.org/deeplinks/2020/09/introducing-yaya-new-threat-hunting-tool-eff-threat-lab
+
+
+Yargen is another tool for genrating yara rules for analysis of code which is long as hell will be difficult so we use yargen 
+
+To generate rules for specific files(because some code contain prebuilt software strings which are no use for analysis )
+
+Python3 yarGen.py  --update
+Python3 yarGen.py -m <for file u want to generate rule> --excludegood -o < where to output files rules>
+
+
+Valhalla  the another tool developed by florian roth
+
+https://valhalla.nextron-systems.com/ 
+The web based yara tool
